@@ -15,4 +15,6 @@ router.get('/auth/google/callback', passport.authenticate('google', { failureRed
 // google 登入成功，回傳使用者資料
 router.get("/profile", handleErrorAsync(userController.getGoogleProfile)) 
 
+router.get("/check", handleErrorAsync(userController.getCheck)) 
+
 module.exports = router;

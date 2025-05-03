@@ -17,7 +17,7 @@ console.log("process.env.Google_CLIENT_ID", process.env.Google_CLIENT_ID)
 // Passport 設定
 passport.use(new GoogleStrategy(
   {
-    clientId: process.env.Google_CLIENT_ID,
+    clientID: process.env.Google_CLIENT_ID,
     clientSecret: process.env.Google_CLIENT_SECRET,
     callbackURL: 'http://localhost:8080/api/v1/users/auth/google/callback'
   },
@@ -28,8 +28,6 @@ passport.use(new GoogleStrategy(
     return done(null, profile)
   }
 ));
-
-console.log("process.env.Google_CLIENT_ID", process.env.Google_CLIENT_ID)
 
 //當使用者成功登入時, serializeUser 會儲存使用者資訊到 session
 passport.serializeUser((user, done) => done(null, user))

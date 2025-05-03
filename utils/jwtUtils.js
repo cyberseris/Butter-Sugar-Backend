@@ -22,7 +22,7 @@ const verifyJWT = (token) => {
                         reject(appError(401, 'Token 已過期'))
                         break
                     default:
-                        reject(appError(401, '無效的 token'))
+                        reject(appError(401, '驗證錯誤，token 無效或是不存在'))
                         break
                 }
             } else {

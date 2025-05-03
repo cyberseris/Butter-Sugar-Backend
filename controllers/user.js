@@ -1,9 +1,9 @@
 const { dataSource } = require('../db/data-source')
 const appError = require('../utils/appError')
-const { generateJWT } = require('../utils/jwtUtils')
+const { generateJWT, verifyJWT } = require('../utils/jwtUtils')
 
 const userController = {
-    //取得 google 基本資料
+    // 取得 google 基本資料
     async getGoogleProfile (req, res, next) {
         if(!req.user.emails[0].verified){
             next(appError(401, "登入失敗，使用者電子郵件未經驗證"))
@@ -82,6 +82,49 @@ const userController = {
             }
         } 
     },
+
+    // 驗證使用者是否登入
+    async getCheck (req, res, next) {
+        const authHeader = req.headers.authorization
+        if(!authHeader || !authHeader.startsWith('Bearer')){
+            //401: 請先登入!
+            next(appError(401, "驗證錯誤，token 無效或是不存在"))
+            return
+        }
+
+        // 取出 token
+        const token = authHeader.split(' ')[1]
+        //驗證 token
+        const decoded = await verifyJWT(token)
+
+        if(!decoded){
+            if(!authHeader || !authHeader.startsWith('Bearer')){
+                //401: 請先登入!
+                next(appError(401, "驗證錯誤，token 無效或是不存在"))
+                return
+            }            
+        }
+
+        // 尋找對應 id 的使用者
+        const currentUser = await dataSource.getRepository('User').findOne({
+            select: ['id'],
+            where: {
+                id: decoded.id
+            }
+        })
+
+        if(!currentUser){
+            next(appError(401, "驗證錯誤，token 無效或是不存在"))
+            return
+        }
+
+        res.status(200).json({
+            status: true,
+            message: "驗證成功"
+        })
+    
+        return
+    }
 }
 
 module.exports = userController;
