@@ -12,8 +12,6 @@ const studentRouter = require('./routes/student')
 require('dotenv').config()
 const app = express()
 
-console.log("process.env.Google_CLIENT_ID", process.env.Google_CLIENT_ID)
-
 // Passport 設定
 passport.use(new GoogleStrategy(
   {
