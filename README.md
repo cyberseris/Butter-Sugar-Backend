@@ -55,7 +55,11 @@ JWT_SECRET=hexschool666
 - `npm run clean` - 關閉伺服器與資料庫並清除所有資料
 
 ## 實際開發
-
+## 前端 Open with Live Server, index.html  
+```
+<a href='http://localhost:8080/api/v1/users/auth/google'>Login with Google</a>
+```
+## 後端
 - 開啟 docker desktop
 - Dockerfile - 修改成 node 環境版本 node:20-alpine3.19
 - .env 使用 localhost 開發伺服器, DB_HOST=localhost, 使用雲端主機，DB_HOST=postgres
