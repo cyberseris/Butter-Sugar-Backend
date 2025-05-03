@@ -65,7 +65,8 @@ JWT_SECRET=hexschool666
 - .env 使用 localhost 開發伺服器, DB_HOST=localhost, 使用雲端主機，DB_HOST=postgres
 - `npm run start` - 啟動伺服器與資料庫
 - `npm run dev` - 啟動開發伺服器
-- google auth 已授權的重新導向 URI - 不能設定 IP 網址，要 domain
+- 本機運行程式碼， google auth 已授權的重新導向 URI: http://localhost:8080/api/v1/users/auth/google/callback
+- 雲端主機 docker 佈署， google auth 已授權的重新導向 URI: http://domain:8080/api/v1/users/auth/google/callback ，不能設定 IP 網址(http://IP:8080/api/v1/users/auth/google/callback)
 - port forwarding 出錯時 - (1) net stop winnat, (2) net start winnat
 
 ## 雲端佈署
