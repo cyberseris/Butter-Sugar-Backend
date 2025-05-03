@@ -53,7 +53,6 @@ JWT_SECRET=hexschool666
 - `npm run restart` - 重新啟動伺服器與資料庫
 - `npm run stop` - 關閉啟動伺服器與資料庫
 - `npm run clean` - 關閉伺服器與資料庫並清除所有資料
-- google auth 已授權的重新導向 URI - 不能設定 IP 網址，要 domain
 
 ## 實際開發
 
@@ -62,6 +61,8 @@ JWT_SECRET=hexschool666
 - .env 使用 localhost 開發伺服器, DB_HOST=localhost, 使用雲端主機，DB_HOST=postgres
 - `npm run start` - 啟動伺服器與資料庫
 - `npm run dev` - 啟動開發伺服器
+- google auth 已授權的重新導向 URI - 不能設定 IP 網址，要 domain
+- port forwarding 出錯時 - (1) net stop winnat, (2) net start winnat
 
 ## 雲端佈署
 
