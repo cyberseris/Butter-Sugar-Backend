@@ -75,7 +75,7 @@ SESSION_SECRET=
 - 雲端主機 docker 佈署， google auth 已授權的重新導向 URI: http://domain:8080/api/v1/users/auth/google/callback ，不能設定 IP 網址(http://IP:8080/api/v1/users/auth/google/callback)
 - port forwarding 出錯時 - (1) net stop winnat, (2) net start winnat
 
-## 雲端佈署
+## 雲端部署
 
 - 打包 - docker build -t ${docker hub 帳號}/bootcamp-fitness .
 - 上傳 - docker push ${docker hub 帳號}/bootcamp-fitness
