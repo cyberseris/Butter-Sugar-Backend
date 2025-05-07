@@ -25,6 +25,9 @@ PORT=8080
 LOG_LEVEL=debug
 JWT_EXPIRES_DAY=30d
 JWT_SECRET=hexschool666
+GOOGLE_CLIENT_ID=
+GOOGLE_CLIENT_SECRET=
+SESSION_SECRET=
 ```
 
 使用 localhost 開發伺服器（資料庫仍使用 Docker）：
@@ -44,6 +47,9 @@ PORT=8080
 LOG_LEVEL=debug
 JWT_EXPIRES_DAY=30d
 JWT_SECRET=hexschool666
+GOOGLE_CLIENT_ID=
+GOOGLE_CLIENT_SECRET=
+SESSION_SECRET=
 ```
 
 ## 開發指令
@@ -103,7 +109,7 @@ JWT_SECRET=hexschool666
 ```
 
 - 虛擬主機 - 建立 docker-compose.yml 檔
-- 指定要運行的 image - docker-compose.yml 需新增 image: seriskey/bootcamp-fitness
+- 指定要運行的 image - docker-compose.yml 需新增 image: seriskey/butter-sugar
 - 修改 docker-compose.yml - healthcheck: test: ["CMD-SHELL", "pg_isready -U ${DB_USERNAME} -d ${DB_DATABASE} -h localhost"] interval: 10s timeout: 3s retries: 5 start_period: 30s
 - docker-compose.yml 需新增 volumes: .env:/app/.env - 新增 volumes 後，
 Docker 一啟動 container 自動把主機上 /root/.env 掛到 container 的 /app/.env，dotenv.config() 可以正常讀到 /app/.env
@@ -131,7 +137,7 @@ Docker 一啟動 container 自動把主機上 /root/.env 掛到 container 的 /a
       retries: 5
       start_period: 30s
   bootcamp-fitness:
-    image: ${docker hub 帳號}/bootcamp-fitness
+    image: ${docker hub 帳號}/butter-sugar
     build:
       dockerfile: Dockerfile
     env_file:
