@@ -97,10 +97,16 @@ JWT_SECRET=hexschool666
   LOG_LEVEL=debug
   JWT_EXPIRES_DAY=30d
   JWT_SECRET=hexschool666
+  GOOGLE_CLIENT_ID=
+  GOOGLE_CLIENT_SECRET=
+  SESSION_SECRET=
 ```
 
 - 虛擬主機 - 建立 docker-compose.yml 檔
-
+- 指定要運行的 image - docker-compose.yml 需新增 image: seriskey/bootcamp-fitness
+- 修改 docker-compose.yml - healthcheck: test: ["CMD-SHELL", "pg_isready -U ${DB_USERNAME} -d ${DB_DATABASE} -h localhost"] interval: 10s timeout: 3s retries: 5 start_period: 30s
+- docker-compose.yml 需新增 volumes: .env:/app/.env - 新增 volumes 後，
+Docker 一啟動 container 自動把主機上 /root/.env 掛到 container 的 /app/.env，dotenv.config() 可以正常讀到 /app/.env
 ```
   version: "3.8"
   volumes:
@@ -119,10 +125,11 @@ JWT_SECRET=hexschool666
     networks:
       - bootcamp_network
     healthcheck:
-      test: ["CMD-SHELL", "sh -c 'pg_isready -U ${DB_USERNAME} -d ${DB_DATABASE}'"]
+      test: ["CMD-SHELL", "pg_isready -U ${DB_USERNAME} -d ${DB_DATABASE} -h localhost"]
       interval: 10s
       timeout: 3s
-      retries: 3
+      retries: 5
+      start_period: 30s
   bootcamp-fitness:
     image: ${docker hub 帳號}/bootcamp-fitness
     build:
@@ -154,8 +161,21 @@ JWT_SECRET=hexschool666
 ```
 
 - 啟動指令 - 自動建立環境並運行環境 - docker compose --env-file .env up -d
-- POSTMAN API 測試 - 註冊、登入、取得個人資料
+- POSTMAN API 測試 
 
+## 除錯指令參考
+```
+docker container prune -f
+docker system prune -f
+docker image rmi seriskey/butter-sugar
+docker volume ls
+docker volume rm root_pgData
+net stop winnat
+net start winnat
+docker pull seriskey/butter-sugar
+docker compose --env-file .env up -d
+docker compose --env-file .env down
+```
 ## 參考資訊
 
 - Docker 第一週 - https://hackmd.io/@hexschool/SJvuaqizA

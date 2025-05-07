@@ -8,16 +8,19 @@ const GoogleStrategy = require('passport-google-oauth20').Strategy
 const logger = require('./utils/logger')('App')
 const userRouter = require('./routes/user')
 const studentRouter = require('./routes/student')
-
-require('dotenv').config()
+const config = require('./config/index')
 const app = express()
+
+
+const clientID = config.get('google.googleClientId')
+const clientSecret = config.get('google.googleClientSecret')
 
 // Passport 設定
 passport.use(new GoogleStrategy(
   {
-    clientID: process.env.Google_CLIENT_ID,
-    clientSecret: process.env.Google_CLIENT_SECRET,
-    callbackURL: 'http://localhost:8080/api/v1/users/auth/google/callback'
+    clientID: clientID,
+    clientSecret: clientSecret,
+    callbackURL: 'http://XXXXX.seriskey.xyz:8080/api/v1/users/auth/google/callback'
   },
   (accessToken, refreshToken, profile, done) => {
     // 儲存 accessToken 到 profile 中
@@ -44,6 +47,7 @@ app.use(pinoHttp({
     }
   }
 }))
+// 測試頁面
 app.use(express.static(path.join(__dirname, 'public')))
 app.use(session({
   secret: process.env.SESSION_SECRET,
