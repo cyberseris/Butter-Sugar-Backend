@@ -9,22 +9,22 @@ npm ci
 2. 設定環境變數
 
 使用 Docker 開發：
-
+範例
 ```
-POSTGRES_USER=testHexschool
-POSTGRES_PASSWORD=pgStartkit4test
-POSTGRES_DB=test
+POSTGRES_USER=
+POSTGRES_PASSWORD=
+POSTGRES_DB=
 DB_HOST=postgres
 DB_PORT=5432
-DB_USERNAME=testHexschool
-DB_PASSWORD=pgStartkit4test
-DB_DATABASE=test
+DB_USERNAME=
+DB_PASSWORD=
+DB_DATABASE=
 DB_SYNCHRONIZE=true
 DB_ENABLE_SSL=false
 PORT=8080
 LOG_LEVEL=debug
 JWT_EXPIRES_DAY=30d
-JWT_SECRET=hexschool666
+JWT_SECRET=
 GOOGLE_CLIENT_ID=
 GOOGLE_CLIENT_SECRET=
 SESSION_SECRET=
@@ -33,20 +33,20 @@ SESSION_SECRET=
 使用 localhost 開發伺服器（資料庫仍使用 Docker）：
 
 ```
-POSTGRES_USER=testHexschool
-POSTGRES_PASSWORD=pgStartkit4test
-POSTGRES_DB=test
+POSTGRES_USER=
+POSTGRES_PASSWORD=
+POSTGRES_DB=
 DB_HOST=localhost
 DB_PORT=5432
-DB_USERNAME=testHexschool
-DB_PASSWORD=pgStartkit4test
+DB_USERNAME=
+DB_PASSWORD=
 DB_DATABASE=test
 DB_SYNCHRONIZE=true
 DB_ENABLE_SSL=false
 PORT=8080
 LOG_LEVEL=debug
 JWT_EXPIRES_DAY=30d
-JWT_SECRET=hexschool666
+JWT_SECRET=
 GOOGLE_CLIENT_ID=
 GOOGLE_CLIENT_SECRET=
 SESSION_SECRET=
@@ -72,7 +72,7 @@ SESSION_SECRET=
 - `npm run start` - 啟動伺服器與資料庫
 - `npm run dev` - 啟動開發伺服器
 - 本機運行程式碼， google auth 已授權的重新導向 URI: http://localhost:8080/api/v1/users/auth/google/callback
-- 雲端主機 docker 佈署， google auth 已授權的重新導向 URI: http://domain:8080/api/v1/users/auth/google/callback ，不能設定 IP 網址(http://IP:8080/api/v1/users/auth/google/callback)
+- 雲端主機 docker 部署， google auth 已授權的重新導向 URI: http://domain:8080/api/v1/users/auth/google/callback ，不能設定 IP 網址(http://IP:8080/api/v1/users/auth/google/callback)
 - port forwarding 出錯時 - (1) net stop winnat, (2) net start winnat
 
 ## 雲端部署
@@ -88,21 +88,21 @@ SESSION_SECRET=
 - 虛擬主機 - 建立 .env 檔案
 
 ```
-  POSTGRES_USER=testHexschool
-  POSTGRES_PASSWORD=pgStartkit4test
+  POSTGRES_USER=
+  POSTGRES_PASSWORD=
   POSTGRES_DB=test
 
   DB_HOST=postgres
   DB_PORT=5432
-  DB_USERNAME=testHexschool
-  DB_PASSWORD=pgStartkit4test
-  DB_DATABASE=test
+  DB_USERNAME=
+  DB_PASSWORD=
+  DB_DATABASE=
   DB_SYNCHRONIZE=true
   DB_ENABLE_SSL=false
   PORT=8080
   LOG_LEVEL=debug
   JWT_EXPIRES_DAY=30d
-  JWT_SECRET=hexschool666
+  JWT_SECRET=
   GOOGLE_CLIENT_ID=
   GOOGLE_CLIENT_SECRET=
   SESSION_SECRET=
