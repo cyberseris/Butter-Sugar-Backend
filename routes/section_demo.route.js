@@ -11,6 +11,9 @@ const { createSectionSchema, updateSectionSchema } = require('../schema/section.
 const router = express.Router()
 
 // 取得某課程的所有章節
+router.get('/section/course/:courseId', sectionDemoController.getSectionsByCourseId)
+
+// 取得某課程的所有章節
 router.get('/course/:courseId', sectionDemoController.getSectionsByCourseId)
 
 module.exports = router

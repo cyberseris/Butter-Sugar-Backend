@@ -16,6 +16,7 @@ const swaggerDocument = require('../swagger-output.json')
 const bullBoardRouter = require('./bullBoard.route')
 
 module.exports = (app) => {
+  app.use('/api/v1', courseSectionDemoRouter)
   app.use('/api/v1/users', userRouter)
   app.use('/api/v1/teacher', teacherRouter)
   app.use('/api/v1/admin', adminRouter)
@@ -26,7 +27,7 @@ module.exports = (app) => {
   app.use('/api/v1/course', subsectionRouter) //路由強關聯
   app.use('/api/v1/course', progressRouter) 
 
-  app.use('/api/v1/section', courseSectionDemoRouter)
+
   app.use('/api/v1/cart', cartRouter)
   /* app.use('/api/v1/subsection', subsectionRouter) */
   app.use('/api/v1/subsection/upload', subsectionUploadRouter)
