@@ -57,11 +57,7 @@ const sectionController = {
       })
       return sendResponse(res, 200, true, '新增章節成功', result)
     }),
-  
-    /*
-     * 取得課程章節
-     * @route GET - /api/v1/course/:courseId/section
-     */
+
     getSection: wrapAsync(async (req, res, next) => {
       const course_id = req.params.courseId
       let logEntry = req.logEntry
@@ -100,6 +96,28 @@ const sectionController = {
       return sendResponse(res, 200, true, '取得課程章節成功', findCourseSection)
     }),
   
+    /*
+     * 取得課程章節2, 舊版, 之後更新
+     * @route GET - /api/v1/course/:courseId/section/course/${courseId}
+     */
+    getSectionsByCourseId: wrapAsync(async (req, res, next) => {
+      const { courseId } = req.params
+      if (!courseId) return next(appError(400, '缺少課程 ID'))
+  
+      const sectionRepo = dataSource.getRepository('course_section')
+      // 確認 courseId 是否存在
+      const courseExists = await sectionRepo.findOne({ where: { course_id: courseId } })
+      if (!courseExists) return next(appError(404, '找不到對應課程'))
+  
+      const sections = await sectionRepo.find({
+        where: { course_id: courseId },
+        order: { order_index: 'ASC' },
+        relations: ['subsections'],
+      })
+  
+      return sendResponse(res, 200, true, '取得課程章節成功', { sections })
+    }),
+
     /*
     * 修改課程章節
     * @route PATCH - /api/v1/course/section/:courseSectionId

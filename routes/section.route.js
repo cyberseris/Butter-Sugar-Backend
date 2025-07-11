@@ -12,6 +12,9 @@ const router = express.Router()
 // 取得某課程的所有章節
 router.get('/:courseId/section',...handleMiddleware(
   [isAuth, isTeacher], sectionController.getSection))
+
+  // 取得某課程的所有章節
+/* router.get('/course/:courseId', sectionController.getSectionsByCourseId) */
 /* ...handleMiddleware(
   [isAuth, isTeacher]),  */
 

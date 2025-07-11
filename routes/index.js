@@ -5,6 +5,7 @@ const adminRouter = require('./admin.route')
 const courseUploadRoutes = require('./courseUpload.route')
 const coursesRouter = require('./courses.route')
 const courseSectionRouter = require('./section.route')
+const courseSectionDemoRouter = require('./section_demo.route') //舊版, 來不及切換新的
 const subsectionRouter = require('./subsection.route')
 const subsectionUploadRouter = require('./subsectionUpload.route')
 const progressRouter = require('./progress.route')
@@ -24,8 +25,8 @@ module.exports = (app) => {
   app.use('/api/v1/course', courseSectionRouter)  //路由強關聯
   app.use('/api/v1/course', subsectionRouter) //路由強關聯
   app.use('/api/v1/course', progressRouter) 
-  
-  /* app.use('/api/v1/section', courseSectionRouter) */
+
+  app.use('/api/v1/section', courseSectionDemoRouter)
   app.use('/api/v1/cart', cartRouter)
   /* app.use('/api/v1/subsection', subsectionRouter) */
   app.use('/api/v1/subsection/upload', subsectionUploadRouter)
